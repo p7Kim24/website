@@ -1,0 +1,90 @@
+<html>
+<head>
+
+<script language="JavaScript">
+function guessing()
+{
+	/* block comment
+	1. Create (declare) three variables:	rand (for random number)
+											usersGuess (the guess that the user makes
+											numOfGuesses(increases by 1 each time the user makes
+											another guess.
+	2. Set numOfGuesses to 0
+	3. Create a random number between 1 and 10. Store this in rand.
+	4. Set usersGuess to -1.
+	5. Create a while loop
+			while (rand != usersGuess) // == tests equality. ! tests if rand does NOT
+			EQUAL uG
+	6. Inside while,
+		6a. increase numOfGuesses.
+		6b. prompt the user to input a new guess
+		6c. if usersGuess is too low, alert this fact
+		6d. if usersGuess is too high, alert this.
+	7. After the while, alert that they are correct and how many guesses it took.
+	*/
+	var usersGuess = -1;
+	var numOfGuesses = 0; //camelCase
+	var rand = Math.random() * 10+1;
+	rand = parseInt(rand);
+
+	while (rand != usersGuess) //loop while rand does NOT equal usersGuess
+	{
+		usersGuess=prompt("Enter a number between 1-10");
+		numOfGuesses = numOfGuesses +1; // add one to var
+								//numOfGuesses++;
+		if(usersGuess < rand)
+		{
+			alert("Your guess is too low.");
+		}
+		
+		else if(usersGuess > rand)
+		{
+			alert("Your guess is too high.");
+		}	
+		
+		else
+		{
+			alert("You did it! Here's how many guesses it took: "+numOfGuesses);
+		}
+		//user has got the correct answer
+		
+	}
+	
+}
+function g()
+{
+	alert("Hello");
+}
+function greeting2()
+{
+	//vat declares variable. Use var only once per variable.
+	//1st time a variable is assigned data is called "initialize"
+var response=prompt("Type your name");  //=is the assignment operator
+alert("Hello there "+reponse);
+}									//This assigns the element on the right to
+									//the element on the left
+function greeting3()
+{
+var name=confirm("Do you like my website?");
+alert(name);
+}
+
+</script>
+</head>
+<body>
+<body background="images/bkgnd3.gif">
+<font color="white">
+<center>
+<h1>My First JavaScript</h1>
+<br/><hr/>
+<input type="button" value="Click here!" onclick="g()"/>
+<br/><hr/>
+<input type="button" value="Click here also!" onclick="greeting2()"/>
+<br/><hr/>
+<input type="button" value="I'm right here!!" onclick="greeting3()"/>
+<br/><hr/>
+<input type="button" value="Guessing game" onclick="guessing()"/>
+
+<h2><a href="index.html"> Click Here </a> to go back to my index page!
+</body>
+</html>
