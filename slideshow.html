@@ -1,0 +1,120 @@
+<html>
+
+
+
+
+<head>
+<script language = "javaScript">
+
+var picList = [ "images/slideshow/slide1MilesDavis.jpg","images/slideshow/slide1MilesDavis.jpg",
+				"images/slideshow/slide2RonCarter.jpg",
+				"images/slideshow/slide3SonnyRollins.jpg",
+				"images/slideshow/slide4FreddieHubbard.jpg",
+				"images/slideshow/slide5TinaBrooks.jpg",
+				"images/slideshow/slide6McCoyTyner.jpg",
+				"images/slideshow/slide7JohnColtrane.jpg"  ];
+				
+var counter = 0;
+
+var clipList = ["sounds/slide1Miles.mp3", "sounds/slide1Miles.mp3",
+				"sounds/slide2Ron.mp3",
+				"sounds/slide3Sonny.mp3",
+				"sounds/slide4Freddie.mp3",
+				"sounds/slide5Tina.mp3",
+				"sounds/slide6McCoy.mp3",
+				"sounds/slide7John.mp3"	];
+				
+				
+var timer;
+var autoStart = false
+
+function nextPic()
+{	
+	counter++;
+	
+	document.getElementById("display").src = picList[counter];
+	
+	document.getElementById("player").src = clipList[counter];
+	
+	document.getElementById("player").play();
+	
+	incrementCounter();
+}
+
+
+function run()
+{
+	if (autoStart==false)
+	{
+		autoStart = true;
+		document.getElementById("runButton").value="Stop";
+	}
+	else
+	{
+		autoStart = false;
+		document.getElementById("runButton").value="Run Slideshow";
+	}
+	autoPlay();
+}
+
+function autoPlay()
+{
+	if ( autoStart == true)
+	{
+	nextPic();
+	//var clipTime = clipList.length;
+	//alert(clipTime);
+	timer = setTimeout("autoPlay()", 30000 );
+	incrementCounter();
+	
+	}
+	
+	else
+	{
+		clearTimeout[timer];
+	}
+}
+
+function incrementCounter()
+{
+	if(counter == picList.length-1)
+		{
+			counter = 0;
+		}
+}
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body>
+<center>
+<h1>My Slideshow</h1>
+
+<br/>
+<br/>
+<input type="button"  value = "Next Picture" onclick = "nextPic()"/>
+<br/><br/>
+<input type="button"  value = "Run Slideshow" onclick = "run()" id="runButton"/>
+<br/>
+<br/>
+<br/>
+
+
+<img src = "images/download.jfif" id= "display" />
+</center>
+
+
+<audio id = "player" src="clipList"> </audio>
+
+<a href = "index.html">Click here </a> to return to my index page
+
+
+</body>
+</html>
