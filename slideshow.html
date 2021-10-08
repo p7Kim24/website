@@ -72,6 +72,10 @@ function autoPlay()
 	else
 	{
 		clearTimeout[timer];
+		
+		document.getElementById("player").src = clipList[counter];
+		
+		document.getElementById("player").pause();
 	}
 }
 
