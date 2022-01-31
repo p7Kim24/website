@@ -1,0 +1,194 @@
+<html>
+<head>
+<script language = JavaScript>
+
+var terms =["U.S.A.",
+			"China",
+			"Germany",
+			"Korea",
+			"Australia",
+			"Spain",
+			"Russia",
+			"Austria"
+			];
+			
+var defs = ["Washington D.C.",
+			"Beijing",
+			"Berlin",
+			"Seoul",
+			"Canberra",
+			"Madrid",
+			"Moscow",
+			"Vienna"
+			];
+			
+var asked =[ false,
+			 false,
+			 false,
+			 false,
+			 false,
+			 false,
+			 false,
+			 false];
+			
+var qAsked = 0;
+			
+var counter = 0;
+var score = 0;
+
+function nextQ()
+	{
+		//alert(document.getElementById("terms").checked);
+		//alert(defs);
+		var termsOrDefs = document.getElementById("terms").checked;
+		displayClue(termsOrDefs);
+	}
+
+function displayClue(tORd)
+	{
+		document.getElementById("winLoss").style.visibility = "hidden";
+			
+		qAsked = getUnusedIndex();
+			
+			//document.getElementById("winLoss").src = "images/download.jfif"
+		if(tORd==true)
+		{
+			document.getElementById("clue").value=terms[qAsked];
+		}
+		else
+		{
+			document.getElementById("clue").value=defs[qAsked];
+		}
+			
+		
+	}
+	
+
+	
+function nextA()
+	{
+		var termsOrDefs = document.getElementById("terms").checked;
+		checkAnswer(termsOrDefs);
+	}
+
+function checkAnswer(t)
+	{
+		var answerList;
+			
+			if(t==true)
+				{
+					answerList=defs;
+				}
+			else
+				{
+					answerList=terms;
+				}
+				
+	//alert(answerList);
+	
+		var userAns = document.getElementById("answer").value;
+		
+		if(userAns == answerList[qAsked])
+		{
+			score++
+			alert("CORRECT! Your score is " + score);
+			document.getElementById("winLoss").src = "images/celebration.png";
+		}
+		else
+		{
+			alert("WRONG!!! Your score is "+score)
+			document.getElementById("winLoss").src = "images/wrong.jfif";
+		}
+		
+		document.getElementById("winLoss").style.visibility = "visible";
+		
+		var winWidth = (window.innerWidth/2)-150
+		document.getElementById("image").style.left = winWidth;
+		document.getElementById("image").style.visibility = "visible";
+		
+		if (counter<terms.length-1)
+			{
+			counter++
+			}
+		else
+			{
+			counter=0;
+			endQuiz();
+			}
+		document.getElementById("answer").value = "";
+		document.getElementById("clue").value = "";
+		//var midPoint = window.innerWidth
+	}
+	
+	function doStuff()
+	{
+		alert(getUnusedIndex());
+	}
+	
+	
+	
+	function getUnusedIndex()
+	{
+		var rand = parseInt(Math.random()*asked.length);
+		
+		
+		
+		if( counter < asked.length )
+	{
+		while( asked[rand] == true ) 
+		{
+			rand = Math.floor(Math.random()*asked.length);
+		}// rand is a number that has not been asked yet
+	}
+	else
+	{
+		rand = -1;// Not a valid index for an array
+	}
+		
+		
+		asked[rand]=true
+		
+		return rand;
+	}
+	
+	function endQuiz()
+	{	
+		alert("The quiz is over. Your score was " + score);
+		counter = 0;
+		score = 0;
+		for( i = 0; i < asked.length; i++)
+		{
+			asked[i] = false;
+		}
+	}
+
+</script>
+</head>
+<body>
+<center>
+<h1>World Capital Quiz</h1>
+
+<input type="radio" id="terms" name="qType" onchange="restart()" checked>
+  <label for="terms">Capitals</label>
+<input type="radio" id="defs" name="qType" on>
+  <label for="defs">Countries</label>
+<input type="button" value="Next" onclick="nextQ()"/>
+
+<br/><br/>
+<input type = "text" id="clue" readonly size=40>
+
+<br/><br/>
+<input type = "text" id="answer" onfocusout="nextA()" size=40 value="">
+<br/>
+<input type="button" value="Check Answer" />
+<br/>
+
+<a href="index.html"> Click Here </a> to go back to the Index Page
+</center>
+<div id = "image" style = "position:absolute; top:250; left: 490; visibility:hidden;"/>
+<img id = "winLoss" src = "images/download.jfif" width=300/>
+
+
+</div>
+</body>
+</html>
